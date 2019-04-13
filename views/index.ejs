@@ -6,10 +6,12 @@
 </head>
 <body>
 	<h1>Pokemon index</h1>
-	<ul>
+	<ul class="pokemon">
 		<%	for (let i = 0; i < pokemon.length; i++){	%>
 				<li><a href="/pokemon/<%=i%>"><%=pokemon[i].name%></a></li>
 		<%	}	%>
-	</ul>
+	</ul><br>
+	<br>
+	<a href="/pokemon/new">Create new pokemon</a>
 </body>
 </html>
