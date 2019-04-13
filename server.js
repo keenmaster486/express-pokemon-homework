@@ -21,7 +21,7 @@ app.get('/', function(req, res)
 
 app.get('/pokemon', function(req, res)
 {
-	
+	res.send(pokemon);
 })
 
 
