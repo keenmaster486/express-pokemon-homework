@@ -9,5 +9,8 @@
 	<img src="<%=pokemon.img%>"><br>
 	<br>
 	<a href="/pokemon/<%=id%>/edit">Edit this pokemon</a>
+	<form action="/pokemon/<%=id%>?_method=DELETE" method="POST">
+		<button type="submit">Delete this pokemon</button>
+	</form>
 </body>
 </html>

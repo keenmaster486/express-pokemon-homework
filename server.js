@@ -2,6 +2,7 @@ console.log("server.js loaded");
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const app = express();
 
@@ -9,6 +10,7 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(methodOverride('_method', {methods: ['POST']}));
 app.use(express.static("public"));
 
 const pokemon = require("./pokemon");
@@ -51,11 +53,23 @@ app.get('/pokemon/:id/edit', function(req, res)
 	res.render('edit.ejs', {pokemon: pokemon[req.params.id], id:req.params.id});
 });
 
-app.post('/pokemon/:id', function(req, res)
+app.delete('/pokemon/:id', function(req, res)
+{
+	pokemon.splice(req.params.id, 1);
+	res.redirect('/pokemon');
+});
+
+app.put('/pokemon/:id', function(req, res)
 {
 	pokemon[req.params.id] = req.body;
 	res.redirect('/pokemon');
 });
+
+//app.post('/pokemon/:id', function(req, res)
+//{
+//	pokemon[req.params.id] = req.body;
+//	res.redirect('/pokemon');
+//});
 
 
 module.exports = app;
